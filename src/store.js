@@ -8,6 +8,7 @@ export default new Vuex.Store({
     user: null,
     modals: {
       login: false,
+      register: false,
     },
   },
   mutations: {

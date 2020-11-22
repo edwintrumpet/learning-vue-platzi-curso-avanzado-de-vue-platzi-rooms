@@ -32,7 +32,7 @@
     </main>
     <footer-partial></footer-partial>
     <!-- Modals -->
-    <modal :show="modals.login" @close-modal="closeModal">
+    <modal :show="modals.login" @close-modal="closeModal('login')">
       <h2 class="text-grey-darkest font-semibold text-center mb-6">
         Welcome to Platzi rooms
       </h2>
@@ -40,7 +40,7 @@
         <div class="mb-4">
           <label class="input__label">Email</label>
           <div class="form__field relative">
-            <input class="input__field" type="text" placeholder="Email"/>
+            <input class="input__field" type="email" placeholder="Email"/>
           </div>
         </div>
         <div class="mb-4">
@@ -51,6 +51,40 @@
         </div>
         <div class="mb-4">
           <button class="btn btn-primary mr-3 w-full">Login</button>
+        </div>
+      </form>
+    </modal>
+    <modal :show="modals.register" @close-modal="closeModal('register')">
+      <h2 class="text-grey-darkest font-semibold text-center mb-6">
+        Welcome to Platzi rooms
+      </h2>
+      <form>
+        <div class="mb-4">
+          <label class="input__label">Name</label>
+          <div class="form__field relative">
+            <input class="input__field" type="text" placeholder="Name"/>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="input__label">Email</label>
+          <div class="form__field relative">
+            <input class="input__field" type="email" placeholder="Email"/>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="input__label">Password</label>
+          <div class="form__field relative">
+            <input class="input__field" type="password" placeholder="Password"/>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="input__label">Confirm password</label>
+          <div class="form__field relative">
+            <input class="input__field" type="password" placeholder="Confirm password"/>
+          </div>
+        </div>
+        <div class="mb-4">
+          <button class="btn btn-primary mr-3 w-full">Register</button>
         </div>
       </form>
     </modal>
@@ -79,9 +113,9 @@ export default {
   },
 
   methods: {
-    closeModal() {
+    closeModal(name) {
       this.$store.dispatch('TOGGLE_MODAL_STATE', {
-        name: 'login',
+        name,
         value: false,
       });
     },
