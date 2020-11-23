@@ -36,7 +36,7 @@
       <h2 class="text-grey-darkest font-semibold text-center mb-6">
         Welcome to Platzi rooms
       </h2>
-      <form>
+      <form @submit.prevent="loginHandlerSubmit">
         <div class="mb-4">
           <label class="input__label">Email</label>
           <div class="form__field relative">
@@ -164,6 +164,14 @@ export default {
         .then(() => {
           this.closeModal('register');
         });
+    },
+    loginHandlerSubmit() {
+      this.$store.dispatch('SIGN_IN', {
+        email: this.formLogin.email,
+        password: this.formLogin.password,
+      }).then(() => {
+        this.closeModal('login');
+      });
     },
   },
 };
