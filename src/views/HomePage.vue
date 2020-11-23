@@ -1,7 +1,7 @@
 <template>
   <default-layout>
     <section class="container py-6">
-      <h1 class="text-3x1 font-light text-grey-darkest mb-3">
+      <h1 class="text-3xl font-light text-grey-darkest mb-3">
         Recommended
       </h1>
       <div class="section">
