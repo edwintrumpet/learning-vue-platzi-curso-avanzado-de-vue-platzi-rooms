@@ -72,29 +72,38 @@
       <h2 class="text-grey-darkest font-semibold text-center mb-6">
         Welcome to Platzi rooms
       </h2>
-      <form>
+      <form class="form" @submit.prevent="registerHandlerSubmit">
         <div class="mb-4">
           <label class="input__label">Name</label>
           <div class="form__field relative">
-            <input class="input__field" type="text" placeholder="Name"/>
+            <input
+             v-model="formRegister.name"
+             class="input__field"
+             type="text"
+             placeholder="Name"
+            />
           </div>
         </div>
         <div class="mb-4">
           <label class="input__label">Email</label>
           <div class="form__field relative">
-            <input class="input__field" type="email" placeholder="Email"/>
+            <input
+              v-model="formRegister.email"
+              class="input__field"
+              type="email"
+              placeholder="Email"
+            />
           </div>
         </div>
         <div class="mb-4">
           <label class="input__label">Password</label>
           <div class="form__field relative">
-            <input class="input__field" type="password" placeholder="Password"/>
-          </div>
-        </div>
-        <div class="mb-4">
-          <label class="input__label">Confirm password</label>
-          <div class="form__field relative">
-            <input class="input__field" type="password" placeholder="Confirm password"/>
+            <input
+            v-model="formRegister.password"
+            class="input__field"
+            type="password"
+            placeholder="Password"
+          />
           </div>
         </div>
         <div class="mb-4">
@@ -129,6 +138,11 @@ export default {
         password: '',
         rememberMe: false,
       },
+      formRegister: {
+        email: '',
+        name: '',
+        password: '',
+      },
     };
   },
 
@@ -144,6 +158,12 @@ export default {
         name,
         value: false,
       });
+    },
+    registerHandlerSubmit() {
+      this.$store.dispatch('CREATE_USER', this.formRegister)
+        .then(() => {
+          this.closeModal('register');
+        });
     },
   },
 };
