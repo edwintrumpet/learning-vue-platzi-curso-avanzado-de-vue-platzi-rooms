@@ -20,18 +20,34 @@
         <form>
           <div class="mb-4">
             <label class="input__label">Title</label>
-            <input type="text" class="input__field" placeholder="Title" />
+            <input
+              v-model="publication.title"
+              type="text"
+              class="input__field"
+              placeholder="Title"
+            />
           </div>
           <div class="mb-4">
             <label class="input__label">Description</label>
-            <textarea rows="10" class="input__field" placeholder="Description"></textarea>
+            <textarea
+              v-model="publication.description"
+              rows="10"
+              class="input__field"
+              placeholder="Description"
+            ></textarea>
           </div>
           <div class="mb-4">
             <label class="input__label">Featured image</label>
-            <input type="text" class="input__field" placeholder="Featured image" />
+            <input
+              v-model="publication.featuredImage"
+              type="text"
+              class="input__field"
+              placeholder="Featured image"
+            />
           </div>
           <div class="mb-4 text-right">
             <button
+              @click.prevent="save"
               class="w-full bg-yellow-dark text-yellow-darker font-semibold py-3 px-6 rounded"
             >
               Publish
@@ -51,6 +67,31 @@ export default {
 
   components: {
     PageLayout,
+  },
+
+  data() {
+    return {
+      publication: {
+        title: '',
+        description: '',
+        featuredImage: '',
+      },
+    };
+  },
+
+  methods: {
+    save() {
+      const { title, description, featuredImage } = this.publication;
+
+      const room = {
+        title,
+        description,
+        featured_image: featuredImage,
+        publishedAt: Date.now(),
+      };
+
+      this.$store.dispatch('CREATE_ROOM', room);
+    },
   },
 };
 </script>
